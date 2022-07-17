@@ -3,12 +3,15 @@ package com.blog.blogapp.controller;
 import com.blog.blogapp.dto.PostDto;
 import com.blog.blogapp.dto.PostResponse;
 import com.blog.blogapp.service.impl.PostServiceImpl;
+import com.blog.blogapp.utils.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.blog.blogapp.utils.AppConstants.*;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -24,10 +27,10 @@ public class PostController {
     }
 
     @GetMapping
-    public PostResponse getAllPosts(@RequestParam(value = "pageNo", defaultValue = "0", required = false) int  pageNo,
-                                    @RequestParam(value = "pageSize", defaultValue = "10", required = false) int  pageSize,
-                                    @RequestParam(value = "sortBy", defaultValue = "id", required = false) String  sortBy,
-                                    @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String  sortDir){
+    public PostResponse getAllPosts(@RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int  pageNo,
+                                    @RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int  pageSize,
+                                    @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String  sortBy,
+                                    @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String  sortDir){
         return postService.getAllPost(pageNo,pageSize,sortBy,sortDir);
     }
 
