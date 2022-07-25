@@ -49,7 +49,7 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginDto loginDto){
-        Authentication authentication =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsernameOrEmail(),loginDto.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsernameOrEmail(),loginDto.getPassword()));
         //SecurityContextHolder.getContext().setAuthentication(authentication);
         final UserDetails userDetails = userDetailsService.loadUserByUsername(loginDto.getUsernameOrEmail());
         String token = jwtUtility.generateToken(userDetails);
