@@ -16,6 +16,13 @@ public class ResourceNotFoundException extends RuntimeException {
         this.fieldValue = fieldValue;
     }
 
+    public ResourceNotFoundException(String resourceName, String fieldName) {
+        super(String.format("%s not found with %s ", resourceName, fieldName)); // Post not found with id : 1
+        this.resourceName = resourceName;
+        this.fieldName = fieldName;
+        this.fieldValue = fieldValue;
+    }
+
     public String getResourceName() {
         return resourceName;
     }
